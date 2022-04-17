@@ -1,3 +1,3 @@
 # BiBminer
 
-A module that extracts the citations from a latex file (.tex) and generates the corresponding *.bib* output automatically. The citation identifier in the .tex must be in a format compatible with  **HEP Inspire** i.e. arxiv number, hep inspire id, or the bibtex identifier e.g. *Witten:123ab*. 
+A module that extracts the citations from a LaTeX file and generates the corresponding *.bib* file output automatically. The citation id inside *\cite{...}* in the .tex must be in a format compatible with **HEP Inspire**. The supported identifers are: arxiv preprint number (e.g. *2022.1234* or *hep-th/123456*, ... ), hep inspire id, or the bibtex id (e.g. *Witten:123ab*). 
