@@ -11,7 +11,7 @@ print(cite.bibtex)
 
 outputs:
 
-```python
+```
 @article{Camargo-Molina:2022ord,
     author = "Camargo-Molina, Jos\'e Eliel and Rajantie, Arttu",
     title = "{Phase transitions in de Sitter: The stochastic formalism}",
@@ -30,7 +30,7 @@ cite=get_bibtex('hep-ph/9905221')
 print(cite.bibtex)
  ```
 yields:
-```python
+```
 @article{Randall:1999ee,
     author = "Randall, Lisa and Sundrum, Raman",
     title = "{A Large mass hierarchy from a small extra dimension}",
@@ -53,6 +53,6 @@ print(cite.ids)
  ```
  outputs:
  
- ```python
+ ```
  {'bibtexid': 'Randall:1999ee', 'eprint': 'hep-ph/9905221', 'inspireid': 499284}
  ```
