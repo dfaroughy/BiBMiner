@@ -8,6 +8,16 @@ For example:
 cite=get_bibtex('Camargo-Molina:2022ord')
 print(cite.bibtex)
 
+
+@article{Camargo-Molina:2022ord,
+    author = "Camargo-Molina, Jos\'e Eliel and Rajantie, Arttu",
+    title = "{Phase transitions in de Sitter: The stochastic formalism}",
+    eprint = "2204.02875",
+    archivePrefix = "arXiv",
+    primaryClass = "gr-qc",
+    month = "4",
+    year = "2022"
+}
 ```
 
 
