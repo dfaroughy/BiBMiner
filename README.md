@@ -57,8 +57,8 @@ print(cite.ids)
  {'bibtexid': 'Randall:1999ee', 'eprint': 'hep-ph/9905221', 'inspireid': 499284}
  ```
  
-To generate the *.bib* for a LAtex file ```main.tex``` simply run
+To generate the *.bib* for a latex file ```main.tex``` simply run
 
 ```python
-make_bib('main.tex')
+make_bib('path/to/file/main.tex')
  ```
