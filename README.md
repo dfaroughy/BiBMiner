@@ -45,7 +45,7 @@ print(cite.bibtex)
 }
 ```
 
-One can also extract the other 2 identifiers from one of them:
+Each citation will have three unique identifier attributes: ```bibitexid```, ```eprint``` and ```inspireid``` . One can extract these as
 
 ```python
 print(cite.ids)
