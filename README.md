@@ -48,7 +48,6 @@ print(cite.bibtex)
 One can also extract the other 2 identifiers from one of them:
 
 ```python
-cite=get_bibtex('hep-ph/9905221')
 print(cite.ids)
  ```
  outputs:
