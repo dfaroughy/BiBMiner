@@ -10,6 +10,8 @@ print(cite.bibtex)
 
 ```
 
+![alt text](https://github.com/dfaroughy/BiBminer/output1.png "ouput1")
+
 ```python
 cite=get_bibtex('hep-ph/9905221')
 print(cite.bibtex)
