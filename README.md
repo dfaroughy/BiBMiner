@@ -23,13 +23,13 @@ outputs:
 }
 ```
 
-or bibtex from the arxive prepront nuimber:
+or bibtex from the arxiv preprint number:
 
 ```python
 cite=get_bibtex('hep-ph/9905221')
 print(cite.bibtex)
  ```
-
+yields:
 ```python
 @article{Randall:1999ee,
     author = "Randall, Lisa and Sundrum, Raman",
@@ -44,3 +44,15 @@ print(cite.bibtex)
     year = "1999"
 }
 ```
+
+One can also extract the other identifiers from one of them:
+
+```python
+cite=get_bibtex('hep-ph/9905221')
+print(cite.ids)
+ ```
+ outputs:
+ 
+ ```python
+ {'bibtexid': 'Randall:1999ee', 'eprint': 'hep-ph/9905221', 'inspireid': 499284}
+ ```
