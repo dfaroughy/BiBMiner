@@ -5,9 +5,12 @@ A module that extracts the citations from a LaTeX file and generates the corresp
 For example:
 
 ```python
-ref='Camargo-Molina:2022ord'
-cite=get_bibtex(ref)
+cite=get_bibtex('Camargo-Molina:2022ord')
 print(cite.bibtex)
 
 ```
- 
+
+```python
+cite=get_bibtex('hep-ph/9905221')
+print(cite.bibtex)
+ ```
