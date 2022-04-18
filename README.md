@@ -45,7 +45,7 @@ print(cite.bibtex)
 }
 ```
 
-Each citation will have three unique identifier attributes: ```bibtexid```, ```eprint``` and ```inspireid``` . One can extract these as
+Each citation will have three unique identifier attributes: ```bibtexid```, ```eprint``` and ```inspireid```. One can extract these as
 
 ```python
 print(cite.ids)
