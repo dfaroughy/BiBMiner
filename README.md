@@ -1,4 +1,4 @@
-# BiBminer
+# HEP BiBminer
 
 ```bibminer``` is a python module that extracts the citations from a LaTeX file and generates the corresponding *.bib* file automatically. The citation identifiers inside ```\cite{...}``` in the *.tex* file must be in a format compatible with [**HEP Inspire**](https://inspirehep.net). The supported identifers are: [arxiv](https://arxiv.org) preprint number of the type ```2022.12345``` or ```hep-th/123456```, hep inspire id, or the bibtex PID of type ```Witten:123ab```. 
 
