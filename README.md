@@ -8,7 +8,7 @@ To generate the *.bib* for a latex file ```main.tex``` simply run the code
 make_bib('path/to/file/main.tex')
  ```
 
-Citations are automatically extracted from HEP inspires using: ```get_bibtex()```. 
+Citations are automatically extracted from HEP inspires using the class ```get_bibtex```. 
 For example, the input can be a bibtex PID:
 
 ```python
