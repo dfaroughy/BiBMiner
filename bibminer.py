@@ -3,7 +3,6 @@ import urllib3
 import sys
 import json
 from collections import OrderedDict
-
 http = urllib3.PoolManager()
 
 class get_bibtex(object):
@@ -76,13 +75,16 @@ class get_bibtex(object):
             self.bibtex={"status": 404, "message": "PID does not exist."}
             self.ids={'bibtexid': None, 'eprint': None, 'inspireid':None}
 
-def make_bib(tex, output=False):
-    tex_cites=[]
+
+def make_bib(tex, output=False, verbose=True):
+    tex_cites={}; linedic={}; bibdic={}
     if not output:
         output=tex.split('.')[0]+'.bib'    
     bib=open(output,'w')
     with open(tex,encoding="ascii", errors="surrogateescape") as latex:
+        n=0
         for line in latex:
+            n+=1
             line=line.replace(' ','')
             line=line.replace('\cite{',' __________')
             line=line.replace('}',' ')
@@ -91,23 +93,22 @@ def make_bib(tex, output=False):
                     l=l.replace('__________',' ')
                     l=l.replace(',',' ')
                     for cite in l.split():
-                        tex_cites.append(cite)
-    tex_cites=OrderedDict.fromkeys(tex_cites)  
-    bibdic={}
-    for b in tex_cites:
+                        if cite not in tex_cites.keys(): tex_cites[cite]=[str(n)]
+                        else: tex_cites[cite].append(str(n))
+
+    for b in tex_cites.keys():
         cite=get_bibtex(b)
         if cite.unknown:
-            print(u'{} {} -------------<ERROR {}! {}>'.format(b,'\u2717',cite.bibtex["status"],cite.bibtex["message"]))
+            print(u'l.{}| {} -----------<ERROR {}! {}> {}'.format(','.join(tex_cites[b]),b,cite.bibtex["status"],cite.bibtex["message"],'\u2717'))
         elif b!=cite.ids['bibtexid']:
             bibdic[b]=cite.ids['bibtexid']
-            print(u'{} {} --------<{}>'.format(b,'\u2714',cite.ids['bibtexid']))
+            if verbose: print(u'l.{}| {} -----------<{}> {}'.format(','.join(tex_cites[b]), b,cite.ids['bibtexid'],'\u2714'))
             cite.bibtex=cite.bibtex.replace(cite.ids['bibtexid'],b)
             bib.write(cite.bibtex)
         else:
             bibdic[b]=cite.ids['bibtexid']
-            print(u'{} {}'.format(b,'\u2714'))
+            if verbose: print(u'l.{}| {} {}'.format(','.join(tex_cites[b]),b,'\u2714'))
             bib.write(cite.bibtex)
-
     print('done!')
     bib.close()
 
