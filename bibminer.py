@@ -129,5 +129,5 @@ def make_bib(tex, output=False, new_tex=False):
     print('done!')
     bib.close()
 
-if len(sys.argv)==2: make_bib(tex=sys.argv[1])
-if len(sys.argv)==3: make_bib(tex=sys.argv[1],new_tex=sys.argv[2])
+# if len(sys.argv)==2: make_bib(tex=sys.argv[1])
+# if len(sys.argv)==3: make_bib(tex=sys.argv[1],new_tex=sys.argv[2])
