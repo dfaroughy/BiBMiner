@@ -1,16 +1,16 @@
 \providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
 
-\bibitem{Ellis:2013yxa}
-J.~Ellis, D.~S. Hwang, K.~Sakurai and M.~Takeuchi, \emph{{Disentangling
-  Higgs-Top Couplings in Associated Production}},
-  \href{http://dx.doi.org/10.1007/JHEP04(2014)004}{\emph{JHEP} {\bf 04} (2014)
-  004}, [\href{http://arxiv.org/abs/1312.5736}{{\tt 1312.5736}}].
-
 \bibitem{Phys.Rev.Lett.109.160401}
 F.~Wilczek, \emph{{Quantum Time Crystals}},
   \href{http://dx.doi.org/10.1103/PhysRevLett.109.160401}{\emph{Phys. Rev.
   Lett.} {\bf 109} (2012) 160401}, [\href{http://arxiv.org/abs/1202.2539}{{\tt
   1202.2539}}].
+
+\bibitem{Ellis:2013yxa}
+J.~Ellis, D.~S. Hwang, K.~Sakurai and M.~Takeuchi, \emph{{Disentangling
+  Higgs-Top Couplings in Associated Production}},
+  \href{http://dx.doi.org/10.1007/JHEP04(2014)004}{\emph{JHEP} {\bf 04} (2014)
+  004}, [\href{http://arxiv.org/abs/1312.5736}{{\tt 1312.5736}}].
 
 \bibitem{Phys.Lett.B829(2022)137105}
 R.~Zhou and L.~Bian, \emph{{Gravitational wave and electroweak baryogenesis

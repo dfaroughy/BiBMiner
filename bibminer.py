@@ -105,16 +105,16 @@ def make_bib(tex, output=False, verbose=True):
         cite=get_bibtex(b)
         #=================
         if cite.is_missing:
-            print(u'l.{}| {} -----------<ERROR {}! {}> {}'.format(','.join(tex_cites[b]),b,cite.bibtex["status"],cite.bibtex["message"],'\u2717'))
+            print(u'l:{}| {} -----------<ERROR {}! {}> {}'.format(','.join(tex_cites[b]),b,cite.bibtex["status"],cite.bibtex["message"],'\u2717'))
         
         elif cite.ids['bibtexid']!=b:
-            if verbose: print(u'l.{}| {} -----------<{}> {}'.format(','.join(tex_cites[b]), b,cite.ids['bibtexid'],'\u2714'))
+            if verbose: print(u'l:{}| {} -----------<{}> {}'.format(','.join(tex_cites[b]), b,cite.ids['bibtexid'],'\u2714'))
             cite.bibtex=cite.bibtex.replace(cite.ids['bibtexid'],b)
             cite.bibtex = cite.bibtex.encode('ascii', 'ignore').decode('ascii')
             bib.write(cite.bibtex)
         
         else:
-            if verbose: print(u'l.{}| {} {}'.format(','.join(tex_cites[b]),b,'\u2714'))
+            if verbose: print(u'l:{}| {} {}'.format(','.join(tex_cites[b]),b,'\u2714'))
             cite.bibtex = cite.bibtex.encode('ascii', 'ignore').decode('ascii')
             bib.write(cite.bibtex)
 
