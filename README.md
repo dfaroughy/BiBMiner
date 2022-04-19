@@ -16,7 +16,7 @@ cite=get_bibtex('Camargo-Molina:2022ord')
 print(cite.bibtex)
 ```
 
-with output
+yields
 
 ```
 @article{Camargo-Molina:2022ord,
