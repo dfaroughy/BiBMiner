@@ -2,14 +2,21 @@
 
 ```bibminer``` is a python module that extracts the citations from a LaTeX file and generates the corresponding *.bib* file automatically. The citation identifiers inside ```\cite{...}``` in the *.tex* file must be in a format compatible with [**HEP Inspire**](https://inspirehep.net). The supported identifers are: [arxiv](https://arxiv.org) preprint number of the type ```2022.12345``` or ```hep-th/123456```, hep inspire id, or the bibtex PID of type ```Witten:123ab```. 
 
-For example, the code to get the *bibtex* from a given bibtex PID is
+To generate the *.bib* for a latex file ```main.tex``` simply run the code
+
+```python
+make_bib('path/to/file/main.tex')
+ ```
+
+Citations are automatically extracted from HEP inspires using: ```get_bibtex()```. 
+For example, the input can be a bibtex PID:
 
 ```python
 cite=get_bibtex('Camargo-Molina:2022ord')
 print(cite.bibtex)
 ```
 
-this outputs:
+with output
 
 ```
 @article{Camargo-Molina:2022ord,
@@ -23,7 +30,7 @@ this outputs:
 }
 ```
 
-or from an arxiv preprint number:
+or a arxiv preprint number:
 
 ```python
 cite=get_bibtex('hep-ph/9905221')
@@ -55,9 +62,4 @@ print(cite.ids)
  ```
  {'bibtexid': 'Randall:1999ee', 'eprint': 'hep-ph/9905221', 'inspireid': 499284}
  ```
- 
-To generate the *.bib* for a latex file ```main.tex``` simply run
 
-```python
-make_bib('path/to/file/main.tex')
- ```
