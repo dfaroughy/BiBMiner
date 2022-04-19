@@ -3,11 +3,13 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: example.aux
 The style file: JHEP.bst
 Database file #1: example.bib
+Warning--I didn't find a database entry for "ProbablyWeinberg"
+Warning--I didn't find a database entry for "SovietGuy"
 Warning--I didn't find a database entry for "ChavezFrias:666sob"
 Warning--empty author in ATLAS-CONF-2021-025
 You've used 25 entries,
             2173 wiz_defined-function locations,
-            715 strings with 8718 characters,
+            719 strings with 8768 characters,
 and the built_in function-call counts, 8073 in all, are:
 = -- 835
 > -- 331
@@ -46,4 +48,4 @@ warning$ -- 1
 while$ -- 57
 width$ -- 27
 write$ -- 266
-(There were 2 warnings)
+(There were 4 warnings)
