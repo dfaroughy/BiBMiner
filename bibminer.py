@@ -76,7 +76,7 @@ class get_bibtex(object):
             self.bibtex={"status": 404, "message": "PID does not exist."}
             self.ids={'bibtexid': None, 'eprint': None, 'inspireid':None}
 
-def make_bib(tex, output=False, new_tex=False):
+def make_bib(tex, output=False):
     tex_cites=[]
     if not output:
         output=tex.split('.')[0]+'.bib'    
@@ -97,37 +97,18 @@ def make_bib(tex, output=False, new_tex=False):
     for b in tex_cites:
         cite=get_bibtex(b)
         if cite.unknown:
-            print(u'{} {} ------------- ERROR {}! {}'.format(b,'\u2717',cite.bibtex["status"],cite.bibtex["message"]))
+            print(u'{} {} -------------<ERROR {}! {}>'.format(b,'\u2717',cite.bibtex["status"],cite.bibtex["message"]))
         elif b!=cite.ids['bibtexid']:
             bibdic[b]=cite.ids['bibtexid']
-            print(u'{} {} ------------- WARNING! PID superseded by: {}'.format(b,'\u2717',cite.ids['bibtexid']))
+            print(u'{} {} --------<{}>'.format(b,'\u2714',cite.ids['bibtexid']))
+            cite.bibtex=cite.bibtex.replace(cite.ids['bibtexid'],b)
+            bib.write(cite.bibtex)
         else:
             bibdic[b]=cite.ids['bibtexid']
             print(u'{} {}'.format(b,'\u2714'))
             bib.write(cite.bibtex)
 
-    if new_tex:
-        print('\n')
-        print('writting new .tex file with corrected bibliography...')
-        tex2=open(tex.split('.')[0]+'_v2_bibminer.tex','w') 
-        with open(tex,encoding="ascii", errors="surrogateescape") as latex:
-            n=0
-            for line in latex:
-                n+=1
-                if '\cite{' in line:
-                    for b in list(bibdic.keys()):
-                        if b in line: 
-                            if b!=bibdic[b]:
-                                line=line.replace(b,bibdic[b])
-                                print('\treplaced {} --> {}'.format(b,bibdic[b]))
-                try:
-                    tex2.write(line)
-                except UnicodeEncodeError:
-                    print('\t\twarning: bibminer encountered a bad string at line {}. line skipped!'.format(n))
-        tex2.close()
-
     print('done!')
     bib.close()
 
-# if len(sys.argv)==2: make_bib(tex=sys.argv[1])
-# if len(sys.argv)==3: make_bib(tex=sys.argv[1],new_tex=sys.argv[2])
+if len(sys.argv)==2: make_bib(tex=sys.argv[1])
