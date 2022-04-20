@@ -12,8 +12,8 @@ Citations are automatically extracted from HEP inspires using the class ```bibte
 For example, the input can be a bibtex PID:
 
 ```python
-cite=bibtex('Camargo-Molina:2022ord')
-print(cite.bib)
+ref=bibtex('Camargo-Molina:2022ord')
+print(ref.entry)
 ```
 
 yields
@@ -33,8 +33,8 @@ yields
 or a arxiv preprint number:
 
 ```python
-cite=bibtex'hep-ph/9905221')
-print(cite.bib)
+ref=bibtex('hep-ph/9905221')
+print(ref.entry)
  ```
 
 ```
