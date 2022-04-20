@@ -7,36 +7,36 @@ Warning--I didn't find a database entry for "ProbablyWeinberg"
 Warning--I didn't find a database entry for "SovietGuy"
 Warning--I didn't find a database entry for "ChavezFrias:666sob"
 Warning--empty author in ATLAS-CONF-2021-025
-You've used 25 entries,
+You've used 27 entries,
             2173 wiz_defined-function locations,
-            719 strings with 8768 characters,
-and the built_in function-call counts, 8073 in all, are:
-= -- 835
-> -- 331
+            727 strings with 9019 characters,
+and the built_in function-call counts, 8285 in all, are:
+= -- 852
+> -- 346
 < -- 0
-+ -- 96
-- -- 71
-* -- 723
-:= -- 1109
-add.period$ -- 25
-call.type$ -- 25
-change.case$ -- 25
++ -- 101
+- -- 74
+* -- 731
+:= -- 1146
+add.period$ -- 27
+call.type$ -- 27
+change.case$ -- 27
 chr.to.int$ -- 0
-cite$ -- 26
-duplicate$ -- 419
-empty$ -- 684
-format.name$ -- 71
-if$ -- 2116
+cite$ -- 28
+duplicate$ -- 427
+empty$ -- 702
+format.name$ -- 74
+if$ -- 2167
 int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 98
-newline$ -- 78
-num.names$ -- 24
-pop$ -- 46
+int.to.str$ -- 27
+missing$ -- 104
+newline$ -- 84
+num.names$ -- 26
+pop$ -- 50
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 343
+skip$ -- 346
 stack$ -- 0
 substring$ -- 324
 swap$ -- 227
@@ -45,7 +45,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 57
-width$ -- 27
-write$ -- 266
+while$ -- 59
+width$ -- 29
+write$ -- 278
 (There were 4 warnings)

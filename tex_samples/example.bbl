@@ -59,6 +59,15 @@ P.~S. Bhupal~Dev, A.~Djouadi, R.~M. Godbole, M.~M. Muhlleitner and S.~D.
   Lett.} {\bf 100} (2008) 051801}, [\href{http://arxiv.org/abs/0707.2878}{{\tt
   0707.2878}}].
 
+\bibitem{(inprep)(Faroughy;Darius)(Camargo-Molina;Eliel)}
+D.~Faroughy and E.~Camargo-Molina, \emph{{In Preparation}}, .
+
+\bibitem{Fajfer:2012si}
+S.~Fajfer, J.~F. Kamenik and B.~Melic, \emph{{Discerning New Physics in
+  Top-Antitop Production using Top Spin Observables at Hadron Colliders}},
+  \href{http://dx.doi.org/10.1007/JHEP08(2012)114}{\emph{JHEP} {\bf 08} (2012)
+  114}, [\href{http://arxiv.org/abs/1205.0264}{{\tt 1205.0264}}].
+
 \bibitem{SciPostPhys.7(2019)014}
 A.~Butter et~al., \emph{{The Machine Learning landscape of top taggers}},
   \href{http://dx.doi.org/10.21468/SciPostPhys.7.1.014}{\emph{SciPost Phys.}
@@ -94,6 +103,17 @@ B.~Coleppa, M.~Kumar, S.~Kumar and B.~Mellado, \emph{{Measuring CP nature of
   states with a tau lepton and missing transverse momentum with the ATLAS
   detector}}, .
 
+\bibitem{Gritsan:2016hjl}
+A.~V. Gritsan, R.~R\"ontsch, M.~Schulze and M.~Xiao, \emph{{Constraining
+  anomalous Higgs boson couplings to the heavy flavor fermions using matrix
+  element techniques}},
+  \href{http://dx.doi.org/10.1103/PhysRevD.94.055023}{\emph{Phys. Rev. D} {\bf
+  94} (2016) 055023}, [\href{http://arxiv.org/abs/1606.03107}{{\tt
+  1606.03107}}].
+
+\bibitem{(privatecomm)(Glashow;Sheldon)}
+S.~Glashow, \emph{{Private Communication}}, .
+
 \bibitem{hep-ph/9501339}
 B.~Grzadkowski and J.~F. Gunion, \emph{{Using decay angle correlations to
   detect CP violation in the neutral Higgs sector}},
@@ -123,14 +143,6 @@ N.~Mileo, K.~Kiers, A.~Szynkman, D.~Crane and E.~Gegner, \emph{{Pseudoscalar
   {\bf 07} (2016) 056}, [\href{http://arxiv.org/abs/1603.03632}{{\tt
   1603.03632}}].
 
-\bibitem{Gritsan:2016hjl}
-A.~V. Gritsan, R.~R\"ontsch, M.~Schulze and M.~Xiao, \emph{{Constraining
-  anomalous Higgs boson couplings to the heavy flavor fermions using matrix
-  element techniques}},
-  \href{http://dx.doi.org/10.1103/PhysRevD.94.055023}{\emph{Phys. Rev. D} {\bf
-  94} (2016) 055023}, [\href{http://arxiv.org/abs/1606.03107}{{\tt
-  1606.03107}}].
-
 \bibitem{Li:2017dyz}
 J.~Li, Z.-g. Si, L.~Wu and J.~Yue, \emph{{Central-edge asymmetry as a probe of
   Higgs-top coupling in $t\bar{t}h$ production at the LHC}},
@@ -158,11 +170,5 @@ C.~H. Albright and S.~Nandi, \emph{{An Explicit SO(10) x U(1)-F model of the
   \href{http://dx.doi.org/10.1142/S0217732396000746}{\emph{Mod. Phys. Lett. A}
   {\bf 11} (1996) 737--748}, [\href{http://arxiv.org/abs/hep-ph/9505383}{{\tt
   hep-ph/9505383}}].
-
-\bibitem{Fajfer:2012si}
-S.~Fajfer, J.~F. Kamenik and B.~Melic, \emph{{Discerning New Physics in
-  Top-Antitop Production using Top Spin Observables at Hadron Colliders}},
-  \href{http://dx.doi.org/10.1007/JHEP08(2012)114}{\emph{JHEP} {\bf 08} (2012)
-  114}, [\href{http://arxiv.org/abs/1205.0264}{{\tt 1205.0264}}].
 
 \end{thebibliography}\endgroup

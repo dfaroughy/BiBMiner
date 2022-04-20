@@ -3,25 +3,27 @@ import sys
 import json
 import random
 
+
 class get_bibtex(object):
 
     def __init__(self,cite):
         
         self.cite=str(cite) 
         self.ids={'bibtexid':None, 'eprint':None, 'inspireid':None }
-
-        try:
+        self.is_eprint=False         # arxiv numbers e.g. 2022.12345, hep-ph/123456
+        self.is_inspirePID=False     # hep inspire id e.g 1234567
+        self.is_missing=False 
+        self.is_inprep=False
+        self.is_privcomm=False
+        try: 
             float(self.cite)
-            self.is_eprint=True                           # arxiv numbers e.g. 2022.12345, hep-ph/123456
+            self.is_eprint=True                           
         except ValueError:
             if 'hep-' in self.cite: self.is_eprint=True
-            else: self.is_eprint=False
-
-        if self.cite.isdigit(): self.is_inspirePID=True    #    hep inspire id e.g 1234567
-        else: self.is_inspirePID=False 
-        self.is_other=False     
-        self.is_missing=False 
-
+        if self.cite.isdigit(): self.is_inspirePID=True    
+        if '(inprep)(' in self.cite: self.is_inprep=True
+        if '(privatecomm)(' in self.cite: self.is_privcomm=True
+        
         http = urllib3.PoolManager()
 
         try:                
@@ -52,6 +54,24 @@ class get_bibtex(object):
                 url='https://inspirehep.net/api/literature?q={}'.format(self.ids['bibtexid'])
                 resp = http.request('GET', url)
                 self.ids['inspireid']=int(json.loads(resp.data.decode('utf-8'))['hits']['hits'][0]['id'])
+
+            elif self.is_inprep:
+                authors=self.cite.replace('(inprep)','')
+                authors=authors.replace('(','')
+                authors=authors.replace(')',' ')
+                authors=[a.replace(';',', ') for a in authors.split()]
+                authors=' and '.join(authors)
+                self.ids = self.ids.fromkeys(self.ids,str(None))
+                self.bibtex='@article{'+self.cite+',\n    author = "'+authors+'",\n    title = "{In Preparation}"\n}\n'
+
+            elif self.is_privcomm:
+                authors=self.cite.replace('(privatecomm)','')
+                authors=authors.replace('(','')
+                authors=authors.replace(')',' ')
+                authors=[a.replace(';',', ') for a in authors.split()]
+                authors=' and '.join(authors)
+                self.ids = self.ids.fromkeys(self.ids,str(None))
+                self.bibtex='@article{'+self.cite+',\n    author = "'+authors+'",\n    title = "{Private Communication}"\n}\n'
 
             else:
                 url='https://inspirehep.net/api/literature?q={}'.format(self.cite)
@@ -99,16 +119,17 @@ def make_bib(tex, output=False, verbose=True):
                         else: tex_cites[cite].append(str(n))
 
     bib=open(output,'w',encoding="ascii")
-    bib.write('% Automatically generated with BiBminer 3000 (https://github.com/dfaroughy/BiBMiner)\n')
+    bib.write('% Automatically generated with BiBminer 3000 (https://github.com/dfaroughy/BiBMiner)\n\n')
+    
     for b in tex_cites.keys():
         #=================
         cite=get_bibtex(b)
         #=================
         if cite.is_missing:
-            print(u'l:{}| {} -----------<ERROR {}! {}> {}'.format(','.join(tex_cites[b]),b,cite.bibtex["status"],cite.bibtex["message"],'\u2717'))
-        
+            print(u'l:{}| {} ---------<ERROR {}! {}> {}'.format(','.join(tex_cites[b]),b,cite.bibtex["status"],cite.bibtex["message"],'\u2717'))
+
         elif cite.ids['bibtexid']!=b:
-            if verbose: print(u'l:{}| {} -----------<{}> {}'.format(','.join(tex_cites[b]), b,cite.ids['bibtexid'],'\u2714'))
+            if verbose: print(u'l:{}| {} {}'.format(','.join(tex_cites[b]),b,'\u2714'))
             cite.bibtex=cite.bibtex.replace(cite.ids['bibtexid'],b)
             cite.bibtex = cite.bibtex.encode('ascii', 'ignore').decode('ascii')
             bib.write(cite.bibtex)

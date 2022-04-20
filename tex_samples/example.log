@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.3)  20 APR 2022 00:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.3)  20 APR 2022 17:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -77,40 +77,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--20
  []
 
 
-LaTeX Warning: Citation `SovietGuy' on page 1 undefined on input line 23.
+LaTeX Warning: Citation `SovietGuy' on page 1 undefined on input line 22.
 
 
 LaTeX Warning: Citation `ChavezFrias:666sob' on page 1 undefined on input line 
-37.
+36.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--41
+Underfull \hbox (badness 10000) in paragraph at lines 28--40
 
  []
 
 [1
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./example.bbl
+(./example.bbl [2]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 38.
- [2] [3]) [4] (./example.aux)
+ [3]) [4] (./example.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 1008 strings out of 480608
- 23590 string characters out of 5903631
- 442082 words of memory out of 5000000
- 16950 multiletter control sequences out of 15000+600000
+ 1010 strings out of 480608
+ 23671 string characters out of 5903631
+ 441082 words of memory out of 5000000
+ 16952 multiletter control sequences out of 15000+600000
  536805 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,4n,36p,202b,236s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,4n,36p,330b,235s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -120,7 +120,7 @@ sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
 local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
 cal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on example.pdf (4 pages, 116064 bytes).
+Output written on example.pdf (4 pages, 116462 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream
