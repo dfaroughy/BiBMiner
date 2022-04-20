@@ -1,19 +1,19 @@
 # BiBminer 3000
 
-```bibminer``` is a python module that extracts the citations from a LaTeX file and generates the corresponding *.bib* file automatically. The citation identifiers inside ```\cite{...}``` in the *.tex* file must be in a format compatible with [**HEP Inspire**](https://inspirehep.net). The supported identifers are: [arxiv](https://arxiv.org) preprint number of the type ```2022.12345``` or ```hep-th/123456```, hep inspire id, or the bibtex PID of type ```Witten:1984ab```. 
+```bibminer``` is a python module that extracts the citations keys from a LaTeX file and generates the corresponding BibTeX file automatically. 
 
 To generate the *.bib* for a latex file ```main.tex``` simply run the code
 
 ```python
-make_bib('path/to/file/main.tex')
+make_bibtex_file('path/to/file/main.tex')
  ```
 
-Citations are automatically extracted from HEP inspires using the class ```get_bibtex```. 
+Citations are automatically extracted from HEP inspires using the class ```bibtex```. 
 For example, the input can be a bibtex PID:
 
 ```python
-cite=get_bibtex('Camargo-Molina:2022ord')
-print(cite.bibtex)
+cite=bibtex('Camargo-Molina:2022ord')
+print(cite.bib)
 ```
 
 yields
@@ -33,8 +33,8 @@ yields
 or a arxiv preprint number:
 
 ```python
-cite=get_bibtex('hep-ph/9905221')
-print(cite.bibtex)
+cite=bibtex'hep-ph/9905221')
+print(cite.bib)
  ```
 
 ```
@@ -52,14 +52,14 @@ print(cite.bibtex)
 }
 ```
 
-Each citation will have three unique identifier attributes: ```bibtexid```, ```eprint``` and ```inspireid```. One can extract these as
+Each citation will have unique Inspire keys that can be used: ```key```, ```eprint``` and ```id```. One can extract these as
 
 ```python
-print(cite.ids)
+print(cite.inspire)
  ```
  outputs:
  
  ```
- {'bibtexid': 'Randall:1999ee', 'eprint': 'hep-ph/9905221', 'inspireid': 499284}
+ {'eprint': 'hep-ph/9905221', 'key': 'Randall:1999ee', 'id': 499284}
  ```
 
