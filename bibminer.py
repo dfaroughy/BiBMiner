@@ -3,7 +3,6 @@ import sys
 import json
 import random
 
-
 class get_bibtex(object):
 
     def __init__(self,cite):
@@ -13,17 +12,15 @@ class get_bibtex(object):
         self.is_eprint=False         # arxiv numbers e.g. 2022.12345, hep-ph/123456
         self.is_inspirePID=False     # hep inspire id e.g 1234567
         self.is_missing=False 
-        self.is_inprep=False
-        self.is_privcomm=False
+        self.is_custom=False
         try: 
             float(self.cite)
             self.is_eprint=True                           
         except ValueError:
             if 'hep-' in self.cite: self.is_eprint=True
         if self.cite.isdigit(): self.is_inspirePID=True    
-        if '(inprep)(' in self.cite: self.is_inprep=True
-        if '(privatecomm)(' in self.cite: self.is_privcomm=True
-        
+        if '<' in self.cite and '>' in self.cite: self.is_custom=True
+
         http = urllib3.PoolManager()
 
         try:                
@@ -54,24 +51,16 @@ class get_bibtex(object):
                 url='https://inspirehep.net/api/literature?q={}'.format(self.ids['bibtexid'])
                 resp = http.request('GET', url)
                 self.ids['inspireid']=int(json.loads(resp.data.decode('utf-8'))['hits']['hits'][0]['id'])
-
-            elif self.is_inprep:
-                authors=self.cite.replace('(inprep)','')
-                authors=authors.replace('(','')
-                authors=authors.replace(')',' ')
-                authors=[a.replace(';',', ') for a in authors.split()]
+            
+            elif self.is_custom:
+                custom=self.cite.replace('<','')
+                custom=custom.replace('>',' ')
+                custom=custom.split()
+                title=custom[0].replace('_',' '); authors=custom[1:-1]; year=custom[-1]
+                authors=[a.replace(';',', ') for a in authors]
                 authors=' and '.join(authors)
                 self.ids = self.ids.fromkeys(self.ids,str(None))
-                self.bibtex='@article{'+self.cite+',\n    author = "'+authors+'",\n    title = "{In Preparation}"\n}\n'
-
-            elif self.is_privcomm:
-                authors=self.cite.replace('(privatecomm)','')
-                authors=authors.replace('(','')
-                authors=authors.replace(')',' ')
-                authors=[a.replace(';',', ') for a in authors.split()]
-                authors=' and '.join(authors)
-                self.ids = self.ids.fromkeys(self.ids,str(None))
-                self.bibtex='@article{'+self.cite+',\n    author = "'+authors+'",\n    title = "{Private Communication}"\n}\n'
+                self.bibtex='@article{'+self.cite+',\n    author = "'+authors+'",\n    title = "'+title+'",\n    year = "'+year+'"}\n'
 
             else:
                 url='https://inspirehep.net/api/literature?q={}'.format(self.cite)
@@ -113,7 +102,7 @@ def make_bib(tex, output=False, verbose=True):
                 if str(rand) in l:
                     l=l.replace(str(rand),' ')
                     l=l.replace(',',' ')
-
+                    
                     for cite in l.split():
                         if cite not in tex_cites.keys(): tex_cites[cite]=[str(n)]
                         else: tex_cites[cite].append(str(n))
@@ -128,14 +117,9 @@ def make_bib(tex, output=False, verbose=True):
         if cite.is_missing:
             print(u'l:{}| {} ---------<ERROR {}! {}> {}'.format(','.join(tex_cites[b]),b,cite.bibtex["status"],cite.bibtex["message"],'\u2717'))
 
-        elif cite.ids['bibtexid']!=b:
-            if verbose: print(u'l:{}| {} {}'.format(','.join(tex_cites[b]),b,'\u2714'))
-            cite.bibtex=cite.bibtex.replace(cite.ids['bibtexid'],b)
-            cite.bibtex = cite.bibtex.encode('ascii', 'ignore').decode('ascii')
-            bib.write(cite.bibtex)
-        
         else:
             if verbose: print(u'l:{}| {} {}'.format(','.join(tex_cites[b]),b,'\u2714'))
+            if cite.ids['bibtexid']!=b: cite.bibtex=cite.bibtex.replace(cite.ids['bibtexid'],b)
             cite.bibtex = cite.bibtex.encode('ascii', 'ignore').decode('ascii')
             bib.write(cite.bibtex)
 

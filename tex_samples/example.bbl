@@ -59,8 +59,8 @@ P.~S. Bhupal~Dev, A.~Djouadi, R.~M. Godbole, M.~M. Muhlleitner and S.~D.
   Lett.} {\bf 100} (2008) 051801}, [\href{http://arxiv.org/abs/0707.2878}{{\tt
   0707.2878}}].
 
-\bibitem{(inprep)(Faroughy;Darius)(Camargo-Molina;Eliel)}
-D.~Faroughy and E.~Camargo-Molina, \emph{{In Preparation}}, .
+\bibitem{<In_preparation><Arkani-Hamed;Nima><Randall;Lisa><2022>}
+N.~Arkani-Hamed and L.~Randall, \emph{In preparation}, .
 
 \bibitem{Fajfer:2012si}
 S.~Fajfer, J.~F. Kamenik and B.~Melic, \emph{{Discerning New Physics in
@@ -111,8 +111,8 @@ A.~V. Gritsan, R.~R\"ontsch, M.~Schulze and M.~Xiao, \emph{{Constraining
   94} (2016) 055023}, [\href{http://arxiv.org/abs/1606.03107}{{\tt
   1606.03107}}].
 
-\bibitem{(privatecomm)(Glashow;Sheldon)}
-S.~Glashow, \emph{{Private Communication}}, .
+\bibitem{<Private_Communacation><Glashow;Sheldon><2022>}
+S.~Glashow, \emph{Private communacation}, .
 
 \bibitem{hep-ph/9501339}
 B.~Grzadkowski and J.~F. Gunion, \emph{{Using decay angle correlations to
@@ -170,5 +170,8 @@ C.~H. Albright and S.~Nandi, \emph{{An Explicit SO(10) x U(1)-F model of the
   \href{http://dx.doi.org/10.1142/S0217732396000746}{\emph{Mod. Phys. Lett. A}
   {\bf 11} (1996) 737--748}, [\href{http://arxiv.org/abs/hep-ph/9505383}{{\tt
   hep-ph/9505383}}].
+
+\bibitem{<A_Planar_Diagram_Theory_for_Strong_Interactions><t`Hoft;Gerard><1973>}
+G.~t`Hoft, \emph{A planar diagram theory for strong interactions}, .
 
 \end{thebibliography}\endgroup
