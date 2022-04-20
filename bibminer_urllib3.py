@@ -1,3 +1,4 @@
+import urllib3
 import urllib.request
 import sys
 import json
@@ -22,20 +23,12 @@ class bibtex(object):
         if self.key.isdigit(): self.is_id=True    
         if '<' in self.key and '>' in self.key: self.is_custom=True
 
-        def fetch_bibtex_entry(key, identifier='key'):
-            url_id = 'https://inspirehep.net/api/literature/{}?format=bibtex'.format(key)
-            url_eprint = 'https://inspirehep.net/api/arxiv/{}?format=bibtex'.format(key)
-            url_key='https://inspirehep.net/api/literature?q={}'.format(key)
-            if identifier=='key': url=url_key
-            elif identifier=='id': url=url_id
-            elif identifier=='eprint': url=url_eprint
-            with urllib.request.urlopen(url) as response:
-                http=response.read()
-                http=http.decode('utf-8')
-                return http
         try:   
+            http = urllib3.PoolManager()             
             if self.is_id: 
-                out=fetch_bibtex_entry(self.key, identifier='id')
+                url = 'https://inspirehep.net/api/literature/{}?format=bibtex'.format(self.key)
+                resp = http.request('GET', url)
+                out=resp.data.decode('utf-8')
                 self.entry=out
                 #==============
                 out=out.replace(' ',''); out=out.replace('\n','');
@@ -46,16 +39,19 @@ class bibtex(object):
                 self.inspire['id']=self.key
                 
             elif self.is_eprint:        
-                out=fetch_bibtex_entry(self.key, identifier='eprint')
+                url = 'https://inspirehep.net/api/arxiv/{}?format=bibtex'.format(self.key)
+                resp = http.request('GET', url)
+                out=resp.data.decode('utf-8')
                 self.entry=out
                 #==============               
                 out=out.replace(' ',''); out=out.replace('\n','');
                 out=out.replace('"',''); out=out.split(',')
                 for x in out:
                     if 'eprint'in x: self.inspire['eprint']=x.split('=')[-1]
-                    if '@' in x: self.inspire['bibkey']=x.split('{')[-1]  
-                out2=fetch_bibtex_entry(self.inspire['bibkey'], identifier='key')
-                self.inspire['id']=int(json.loads(out2)['hits']['hits'][0]['id'])
+                    if '@' in x: self.inspire['bibkey']=x.split('{')[-1]                    
+                url='https://inspirehep.net/api/literature?q={}'.format(self.inspire['bibkey'])
+                resp = http.request('GET', url)
+                self.inspire['id']=int(json.loads(resp.data.decode('utf-8'))['hits']['hits'][0]['id'])
             
             elif self.is_custom:
                 custom=self.key.replace('<','')
@@ -68,9 +64,12 @@ class bibtex(object):
                 self.entry='@article{'+self.key+',\n    author = "'+authors+'",\n    title = "'+title+'",\n    year = "'+year+'"}\n'
 
             else:
-                out2=fetch_bibtex_entry(self.inspire['bibkey'], identifier='key')
-                self.inspire['id']=int(json.loads(out2)['hits']['hits'][0]['id'])
-                out=fetch_bibtex_entry(self.inspire['id'], identifier='id')
+                url='https://inspirehep.net/api/literature?q={}'.format(self.key)
+                resp = http.request('GET', url)
+                self.inspire['id']=int(json.loads(resp.data.decode('utf-8'))['hits']['hits'][0]['id'])
+                url = 'https://inspirehep.net/api/literature/{}?format=bibtex'.format(self.inspire['id'])
+                resp = http.request('GET', url)
+                out=resp.data.decode('utf-8') 
                 self.entry=out
                 #==============
                 out=out.replace(' ',''); out=out.replace('\n','');
