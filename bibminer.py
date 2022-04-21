@@ -8,7 +8,7 @@ import random
 
 class bibtex(object):
 
-    def __init__(self,key):
+    def __init__(self,key,method='urllib'):
         
         self.key=str(key) 
         self.entry=None
@@ -25,7 +25,7 @@ class bibtex(object):
         if self.key.isdigit(): self.is_id=True    
         if '<' in self.key and '>' in self.key: self.is_custom=True
 
-        def fetch_bibtex_entry(key, identifier='key'):
+        def fetch_bibtex_entry(key, identifier='key', method=method):
             url_id = 'https://inspirehep.net/api/literature/{}?format=bibtex'.format(key)
             url_eprint = 'https://inspirehep.net/api/arxiv/{}?format=bibtex'.format(key)
             url_key='https://inspirehep.net/api/literature?q={}'.format(key)
@@ -34,23 +34,26 @@ class bibtex(object):
             elif identifier=='eprint': url=url_eprint
             
             # #....urllib:
-            # with urllib.request.urlopen(url, context=ssl.SSLContext()) as response:
-            #     http=response.read()
-            #     http=http.decode('utf-8')
-            #     return http
+            if method=='urllib':
+                with urllib.request.urlopen(url, context=ssl.SSLContext()) as response:
+                    http=response.read()
+                    http=http.decode('utf-8')
+                    return http
 
-            # #....requests:
-            # urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-            # http=requests.get(url, verify=False)
-            # http=http.content
-            # http=http.decode('utf-8')
-            # return http
+            #....requests:
+            if method=='requests':
+                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+                http=requests.get(url, verify=False)
+                http=http.content
+                http=http.decode('utf-8')
+                return http
 
             #....urllib3:
-            http=urllib3.PoolManager()
-            http=http.request('GET', url)
-            http=http.data.decode('utf-8')
-            return http
+            if method=='urllib3':
+                http=urllib3.PoolManager()
+                http=http.request('GET', url)
+                http=http.data.decode('utf-8')
+                return http
 
         try:   
             if self.is_id: 
@@ -101,7 +104,7 @@ class bibtex(object):
             self.inspire={'eprint':None, 'bibkey':None,  'id':None }
 
 
-def make_bibtex_file(tex, output=False, verbose=True):
+def make_bibtex_file(tex, output=False, verbose=True, method='urllib'):
     
     citations={}
     if not output: output=tex.split('.')[0]+'.bib'    
@@ -130,7 +133,7 @@ def make_bibtex_file(tex, output=False, verbose=True):
     
     for key in citations.keys():
         #=================
-        ref=bibtex(key)
+        ref=bibtex(key,method=method)
         #=================
         if ref.is_missing:
             print(u'l:{}| {} ---------<ERROR {}! {}> {}'.format(','.join(citations[key]),key,ref.entry["status"],ref.entry["message"],'\u2717'))
