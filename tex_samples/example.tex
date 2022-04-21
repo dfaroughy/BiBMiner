@@ -1,7 +1,14 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{lipsum}
+\usepackage{bashful}
+\newread\myscriptresult
 \begin{document}
+
+\bash[script,stdout,ignoreStderr,stderr]
+python --version
+python bibminer.py tex_samples/example.tex
+\END
 
 \section{Introduction}
 

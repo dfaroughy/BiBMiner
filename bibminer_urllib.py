@@ -1,7 +1,4 @@
 import urllib.request
-import requests
-import urllib3
-import ssl
 import sys
 import json
 import random
@@ -32,26 +29,10 @@ class bibtex(object):
             if identifier=='key': url=url_key
             elif identifier=='id': url=url_id
             elif identifier=='eprint': url=url_eprint
-            
-            # #....urllib:
-            # with urllib.request.urlopen(url, context=ssl.SSLContext()) as response:
-            #     http=response.read()
-            #     http=http.decode('utf-8')
-            #     return http
-
-            # #....requests:
-            # urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-            # http=requests.get(url, verify=False)
-            # http=http.content
-            # http=http.decode('utf-8')
-            # return http
-
-            #....urllib3:
-            http=urllib3.PoolManager()
-            http=http.request('GET', url)
-            http=http.data.decode('utf-8')
-            return http
-
+            with urllib.request.urlopen(url) as response:
+                http=response.read()
+                http=http.decode('utf-8')
+                return http
         try:   
             if self.is_id: 
                 self.entry=fetch_bibtex_entry(self.key, identifier='id')
