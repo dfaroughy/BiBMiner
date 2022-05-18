@@ -90,4 +90,114 @@ Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 
 (/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks17
+\XKV@tempa@toks=\toks18
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count180
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count181
+\lst@gtempboxa=\box46
+\lst@token=\toks19
+\lst@length=\count182
+\lst@currlwidth=\dimen135
+\lst@column=\count183
+\lst@pos=\count184
+\lst@lostspace=\dimen136
+\lst@width=\dimen137
+\lst@newlines=\count185
+\lst@lineno=\count186
+\lst@maxwidth=\dimen138
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count187
+\lst@skipnumbers=\count188
+\lst@framebox=\box47
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+\writer@BL=\write3
+\reader@BL=\read2
+)
+\myscriptresult=\read3
+
+(./example.aux)
+\openout1 = `example.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+
+(/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count189
+\scratchdimen=\dimen139
+\scratchbox=\box48
+\nofMPsegments=\count190
+\nofMParguments=\count191
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count192
+\MPscratchDim=\dimen140
+\MPnumerator=\count193
+\makeMPintoPDFobject=\count194
+\everyMPtoPDFconversion=\toks21
+)
+\c@lstlisting=\count195
+\openout3 = `example.sh'.
+
+runsystem(bash -c "bash example.sh >example.stdout 2>example.stderr || echo $? 
+>example.exitCode")...disabled (restricted).
+
+\openout3 = `example.sh'.
+
+ (./example.sh)
+
+! Package Listings Error: File `example.stdout(.tex)' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
+
+Enter file name: 
+./example.tex:11: Emergency stop.
+<read *> 
+         
+l.11 \END
+         ^^M
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 4133 strings out of 480608
+ 65397 string characters out of 5903631
+ 437082 words of memory out of 5000000
+ 20020 multiletter control sequences out of 15000+600000
+ 532806 words of font info for 26 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 37i,3n,74p,230b,1142s stack positions out of 5000i,500n,10000p,200000b,80000s
+./example.tex:11:  ==> Fatal error occurred, no output PDF file produced!

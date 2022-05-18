@@ -85,9 +85,9 @@ class bibtex(object):
                 authors=[a.replace(';',', ') for a in authors]
                 authors=' and '.join(authors)
                 self.inspire = self.inspire.fromkeys(self.inspire,str(None))
-                self.entry='@article{'+self.key+',\n    author = "'+authors+'",\n    title = "'+title+'",\n    year = "'+year+'"}\n'
+                self.entry='@article{'+self.key+',\n    author = "'+authors+'",\n    title = "{'+title+'}",\n    eprint = "'+year.split("0")[-1]+'XX.XXXXX",\n    year = "'+year+'"}\n'
 
-            else:
+            else: eprint = "1312.5736",
                 key_tmp=fetch_bibtex_entry(self.key, identifier='key')
                 self.inspire['id']=int(json.loads(key_tmp)['hits']['hits'][0]['id'])
                 self.entry=fetch_bibtex_entry(self.inspire['id'], identifier='id')
