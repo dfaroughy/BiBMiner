@@ -1,14 +1,11 @@
 import urllib.request
-import requests
-import urllib3
-import ssl
 import sys
 import json
 import random
 
 class bibtex(object):
 
-    def __init__(self,key,method='urllib'):
+    def __init__(self,key):
         
         self.key=str(key) 
         self.entry=None
@@ -25,40 +22,22 @@ class bibtex(object):
         if self.key.isdigit(): self.is_id=True    
         if '<' in self.key and '>' in self.key: self.is_custom=True
 
-        def fetch_bibtex_entry(key, identifier='key', method=method):
+        def fetch_bibtex_entry(key, identifier='key'):
             url_id = 'https://inspirehep.net/api/literature/{}?format=bibtex'.format(key)
             url_eprint = 'https://inspirehep.net/api/arxiv/{}?format=bibtex'.format(key)
             url_key='https://inspirehep.net/api/literature?q={}'.format(key)
             if identifier=='key': url=url_key
             elif identifier=='id': url=url_id
             elif identifier=='eprint': url=url_eprint
-            
-            # #....urllib:
-            if method=='urllib':
-                with urllib.request.urlopen(url, context=ssl.SSLContext()) as response:
-                    http=response.read()
-                    http=http.decode('utf-8')
-                    return http
-
-            #....requests:
-            if method=='requests':
-                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-                http=requests.get(url, verify=False)
-                http=http.content
+            with urllib.request.urlopen(url) as response:
+                http=response.read()
                 http=http.decode('utf-8')
                 return http
-
-            #....urllib3:
-            if method=='urllib3':
-                http=urllib3.PoolManager()
-                http=http.request('GET', url)
-                http=http.data.decode('utf-8')
-                return http
-
         try:   
             if self.is_id: 
-                self.entry=fetch_bibtex_entry(self.key, identifier='id')
-                out=self.entry
+                out=fetch_bibtex_entry(self.key, identifier='id')
+                self.entry=out
+                #==============
                 out=out.replace(' ',''); out=out.replace('\n','');
                 out=out.replace('"',''); out=out.split(',')
                 for x in out:
@@ -67,15 +46,16 @@ class bibtex(object):
                 self.inspire['id']=self.key
                 
             elif self.is_eprint:        
-                self.entry=fetch_bibtex_entry(self.key, identifier='eprint')
-                out=self.entry
+                out=fetch_bibtex_entry(self.key, identifier='eprint')
+                self.entry=out
+                #==============               
                 out=out.replace(' ',''); out=out.replace('\n','');
                 out=out.replace('"',''); out=out.split(',')
                 for x in out:
                     if 'eprint'in x: self.inspire['eprint']=x.split('=')[-1]
                     if '@' in x: self.inspire['bibkey']=x.split('{')[-1]  
-                id_tmp=fetch_bibtex_entry(self.inspire['bibkey'], identifier='key')
-                self.inspire['id']=int(json.loads(id_tmp)['hits']['hits'][0]['id'])
+                out2=fetch_bibtex_entry(self.inspire['bibkey'], identifier='key')
+                self.inspire['id']=int(json.loads(out2)['hits']['hits'][0]['id'])
             
             elif self.is_custom:
                 custom=self.key.replace('<','')
@@ -87,11 +67,12 @@ class bibtex(object):
                 self.inspire = self.inspire.fromkeys(self.inspire,str(None))
                 self.entry='@article{'+self.key+',\n    author = "'+authors+'",\n    title = "{'+title+'}",\n    eprint = "'+year.split("0")[-1]+'XX.XXXXX",\n    year = "'+year+'"}\n'
 
-            else: eprint = "1312.5736",
-                key_tmp=fetch_bibtex_entry(self.key, identifier='key')
-                self.inspire['id']=int(json.loads(key_tmp)['hits']['hits'][0]['id'])
-                self.entry=fetch_bibtex_entry(self.inspire['id'], identifier='id')
-                out=self.entry
+            else:
+                out2=fetch_bibtex_entry(self.key, identifier='key')
+                self.inspire['id']=int(json.loads(out2)['hits']['hits'][0]['id'])
+                out=fetch_bibtex_entry(self.inspire['id'], identifier='id')
+                self.entry=out
+                #==============
                 out=out.replace(' ',''); out=out.replace('\n','');
                 out=out.replace('"',''); out=out.split(',')
                 for x in out:
@@ -104,7 +85,7 @@ class bibtex(object):
             self.inspire={'eprint':None, 'bibkey':None,  'id':None }
 
 
-def make_bibtex_file(tex, output=False, verbose=True, method='urllib'):
+def make_bibtex_file(tex, output=False, verbose=True):
     
     citations={}
     if not output: output=tex.split('.')[0]+'.bib'    
@@ -133,7 +114,7 @@ def make_bibtex_file(tex, output=False, verbose=True, method='urllib'):
     
     for key in citations.keys():
         #=================
-        ref=bibtex(key,method=method)
+        ref=bibtex(key)
         #=================
         if ref.is_missing:
             print(u'l:{}| {} ---------<ERROR {}! {}> {}'.format(','.join(citations[key]),key,ref.entry["status"],ref.entry["message"],'\u2717'))
@@ -146,4 +127,5 @@ def make_bibtex_file(tex, output=False, verbose=True, method='urllib'):
     print('done!')
     bibtex_file.close()
 
+if len(sys.argv)==1: make_bibtex_file(tex='main.tex')
 if len(sys.argv)==2: make_bibtex_file(tex=sys.argv[1])
